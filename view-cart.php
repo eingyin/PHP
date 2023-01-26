@@ -13,6 +13,24 @@ include("admin/confs/config.php");
 <head>
     <title>View Cart</title>
     <link rel="stylesheet" href="css/UserStyle.css">
+    <style>
+        span{
+            width: 25px;
+         padding:13px;
+           background: #cc828b;
+           border-radius: 2px;
+        
+        }
+        .down, .up{
+            font-size:1.5rem;
+            /* font-weight:bold; */
+        }
+        input[type=submit]{
+            padding: 5px 15px;
+            border-radius: 2px;
+        }
+
+    </style>
 </head>
 
 <body>
@@ -39,16 +57,29 @@ include("admin/confs/config.php");
                 $total += $row['price'] * $qty;
             ?>
                 <tr>
-                    <td><?php echo $row['title'] ?></td>
-                    <td><?php echo $qty ?></td>
+                    <td>
+                        <form action="remove.php" method="post">
+                            <input type="hidden" name="id" value="<?php echo  $id ?>">
+                            <?php echo $row['title'] ?><br>
+                            <input type="submit" name="remove" class="remove" value="Remove" />
+
+                        </form>
+                    </td>
+                    <td>
+                        <div class="counter">
+
+                            <a href="remove-from-cart.php?id=<?php echo $id ?>" class="down">-</a>
+                            <span><?php echo $qty ?></span>
+                            <a href="increase-quantity.php?id=<?php echo $id ?>" class="up">+</a>
+
+                        </div>
+
+                    </td>
                     <td>$<?php echo $row['price'] ?></td>
                     <td>$<?php echo $row['price'] * $qty ?></td>
+
+
                 </tr>
-            <?php endforeach; ?>
-            <tr>
-                <td colspan="3" align="right"><b>Total:</b></td>
-                <td>$<?php echo $total; ?></td>
-            </tr>
         </table>
         <div class="order-form">
             <h2>Order Now</h2>

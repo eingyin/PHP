@@ -9,7 +9,6 @@ include("admin/confs/config.php");
 ?>
 <!doctype html>
 <html>
-
 <head>
     <title>View Cart</title>
     <link rel="stylesheet" href="css/UserStyle.css">
@@ -101,9 +100,6 @@ include("admin/confs/config.php");
     <div class="footer">
         &copy; <?php echo date("Y") ?>. All right reserved.
     </div>
-    <script>
-
-    </script>
 </body>
 
 </html>

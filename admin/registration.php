@@ -8,7 +8,7 @@
 
             var a = document.getElementById("password1").value;
             var b = document.getElementById("password2").value;
-        if(a.length < 8) {  
+        if(a.length < 6) {  
             alert("Password length must be atleast 8 characters");  
             return false;  
         }  

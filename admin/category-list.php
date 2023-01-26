@@ -34,6 +34,10 @@ include("confs/auth.php");
         .btn{
             margin-bottom:10px;
         }
+        span{
+            display:block;
+           width:11em!important;
+        }
     </style>
 
 </head>
@@ -53,13 +57,23 @@ include("confs/auth.php");
     ?>
     <ul>
     <?php while($row = mysqli_fetch_assoc($result)): ?>
-  
-    <li title="<?php echo $row['remark'] ?>">
-   
-    <a href="category-edit.php?id=<?php echo $row['id'] ?>" class="btn edit">Edit</a>
-   <a onclick="return confirm('Are you sure you want to delete this entry?')" href="category-delete.php?id=<?php echo $row['id'] ?>" class="btn del">Delete</a>
-   <?php echo $row['name'] ?>
-    </li>
+    <table width="15%">
+        <tr><th></th></tr>
+        <tr>
+            <td width="5%">
+                <li title="<?php echo $row['remark'] ?>">
+                <span class="name"><?php echo $row['name'] ?></span>
+            </td>
+            <td width="5">
+            <a href="category-edit.php?id=<?php echo $row['id'] ?>" class="btn edit">Edit</a>
+            </td>
+            <td width="5">
+            <a onclick="return confirm('Are you sure you want to delete this entry?')" href="category-delete.php?id=<?php echo $row['id'] ?>" class="btn del">Delete</a>
+            </td>
+
+        </tr>
+    </table>
+   </li>
     <?php endwhile; ?>
     </ul>
     <a href="category-new.php" class="new">New Category</a>

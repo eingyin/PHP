@@ -8,7 +8,8 @@ include("admin/confs/config.php");
 
 ?>
 <!doctype html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
     <title>View Cart</title>
     <link rel="stylesheet" href="css/UserStyle.css">
@@ -30,7 +31,10 @@ include("admin/confs/config.php");
         }
 
     </style>
+
+
 </head>
+
 
 <body>
     <h1>View Cart</h1>
@@ -55,6 +59,7 @@ include("admin/confs/config.php");
                 $row = mysqli_fetch_assoc($result);
                 $total += $row['price'] * $qty;
             ?>
+
                 <tr>
                     <td>
                         <form action="remove.php" method="post">
@@ -79,7 +84,14 @@ include("admin/confs/config.php");
 
 
                 </tr>
+            <?php endforeach; ?>
+            <tr>
+                <td colspan="3" align="right"><b>Total:</b></td>
+                <td>$<?php echo $total; ?></td>
+            </tr>
         </table>
+
+
         <div class="order-form">
             <h2>Order Now</h2>
             <form action="submit-order.php" method="post">
@@ -88,9 +100,10 @@ include("admin/confs/config.php");
                 <label for="email">Email*</label>
                 <input type="email" name="email" id="email" required>
                 <label for="phone">Phone*</label>
-                <input type="tel" placeholder="09*********" name="phone" id="phone" pattern="[0-9]{9,10,11}" required>
+                <input type="tel" placeholder="09*********" name="phone" id="phone" pattern="[0-9]{10,11}" required>
                 <label for="address">Address*</label>
                 <textarea name="address" id="address" required></textarea>
+                <input type="hidden" name="total" value="<?php echo $total ?>">
                 <br><br>
                 <input type="submit" value="Submit Order">
                 <a href="index.php">Back</a>
@@ -100,6 +113,8 @@ include("admin/confs/config.php");
     <div class="footer">
         &copy; <?php echo date("Y") ?>. All right reserved.
     </div>
-</body>
 
+
+</body>
 </html>
+
